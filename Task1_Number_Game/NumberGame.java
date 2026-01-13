@@ -1,32 +1,39 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-using namespace std;
+import java.util.Random;
+import java.util.Scanner;
 
-int main() {
-    srand(time(0));
-    int number = rand() % 100 + 1;
-    int guess, attempts = 0, maxAttempts = 7;
+public class NumberGame {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Random rand = new Random();
 
-    cout << "Guess the number (1 to 100)\n";
+        int number = rand.nextInt(100) + 1;
+        int guess;
+        int attempts = 0;
+        int maxAttempts = 7;
 
-    while (attempts < maxAttempts) {
-        cout << "Enter your guess: ";
-        cin >> guess;
-        attempts++;
+        System.out.println("Guess the number between 1 and 100");
 
-        if (guess == number) {
-            cout << "Correct! You guessed in " << attempts << " attempts.\n";
-            break;
-        } else if (guess > number) {
-            cout << "Too high!\n";
-        } else {
-            cout << "Too low!\n";
+        while (attempts < maxAttempts) {
+            System.out.print("Enter your guess: ");
+            guess = sc.nextInt();
+            attempts++;
+
+            if (guess == number) {
+                System.out.println("Correct! You guessed it in " + attempts + " attempts.");
+                break;
+            } else if (guess > number) {
+                System.out.println("Too High!");
+            } else {
+                System.out.println("Too Low!");
+            }
         }
+
+        if (attempts == maxAttempts) {
+            System.out.println("Game Over! The number was " + number);
+        }
+
+        sc.close();
     }
-
-    if (attempts == maxAttempts)
-        cout << "Game Over! The number was " << number << endl;
-
-    return 0;
 }
+
+  
